@@ -1,0 +1,58 @@
+{
+  "keywords": [
+    "shutdown ai startup",
+    "sunset ai product",
+    "discontinued ai app",
+    "AI 产品 停运",
+    "AI 产品 停更",
+    "AI 产品 下线"
+  ],
+  "feeds": [
+    {
+      "name": "TechCrunch AI",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "priority": "high"
+    },
+    {
+      "name": "The Verge AI",
+      "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+      "priority": "high"
+    },
+    {
+      "name": "VentureBeat AI",
+      "url": "https://venturebeat.com/category/ai/feed/",
+      "priority": "medium"
+    },
+    {
+      "name": "AI News",
+      "url": "https://www.artificialintelligence-news.com/feed/",
+      "priority": "medium"
+    },
+    {
+      "name": "Hacker News",
+      "url": "https://news.ycombinator.com/rss",
+      "priority": "low",
+      "requireTitlePatterns": [
+        "shutdown",
+        "shutting down",
+        "sunset",
+        "sunsetting",
+        "discontinued",
+        "cease operations",
+        "winding down",
+        "停运",
+        "停更",
+        "下线",
+        "关闭",
+        "停止服务"
+      ],
+      "blockedTitlePatterns": [
+        "show hn",
+        "ask hn",
+        "launch hn",
+        "who is hiring",
+        "hiring"
+      ]
+    }
+  ]
+}

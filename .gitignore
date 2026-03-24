@@ -1,0 +1,13 @@
+# Build artifacts
+out/
+public-site/
+.next/
+node_modules/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log

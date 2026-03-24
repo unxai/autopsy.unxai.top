@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Humane AI Pin",
+    "slug": "humane-ai-pin",
+    "status": "zombie",
+    "category": "hardware-assistant",
+    "summary": "硬件野心很大，但没有建立比手机更强的日常入口。",
+    "thesis": "失败关键不在于概念不酷，而在于高频日用价值始终没站住。"
+  },
+  {
+    "name": "Artifact",
+    "slug": "artifact",
+    "status": "closed",
+    "category": "news-discovery",
+    "summary": "体验精致，但作为独立资讯入口的习惯迁移成本太高。",
+    "thesis": "它不是不够好，而是不够不可替代。"
+  },
+  {
+    "name": "Inflection / Pi",
+    "slug": "inflection-pi",
+    "status": "pivoted",
+    "category": "chat-assistant",
+    "summary": "产品体验不错，但公司资源最终转向基础设施路线。",
+    "thesis": "它更多死于公司战略重构，而不是单点产品失败。"
+  }
+]
