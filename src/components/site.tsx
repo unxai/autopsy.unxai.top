@@ -351,8 +351,8 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
   }
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-16">
-      <div className="mb-6 flex flex-wrap items-center gap-3 text-sm text-[var(--muted)]">
+    <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-10 lg:py-16">
+      <div className="mb-6 flex flex-wrap items-center gap-2 text-sm text-[var(--muted)] sm:gap-3">
         <Link href="/cases" className="transition hover:text-[var(--foreground)]">
           ← 返回案例库
         </Link>
@@ -364,20 +364,20 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
         </Link>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-[1.08fr_0.52fr]">
+      <div className="grid gap-6 lg:grid-cols-[1.08fr_0.52fr] lg:gap-8">
         <section className="space-y-8">
-          <div className="panel-strong rounded-[32px] p-7 shadow-soft sm:p-8">
+          <div className="panel-strong rounded-[24px] p-4 shadow-soft sm:rounded-[32px] sm:p-7 lg:p-8">
             <div className="flex flex-wrap items-center gap-3">
               <StatusBadge status={item.statusLabel} />
               <Tag>{item.category}</Tag>
               <span className="text-sm text-[var(--muted)]">结局：{item.endedAt}</span>
             </div>
 
-            <h1 className="mt-6 text-4xl font-semibold tracking-[-0.05em] md:text-6xl">{item.name}</h1>
-            <p className="mt-4 measure text-lg leading-8 text-[var(--muted)]">{item.tagline}</p>
-            <p className="mt-6 max-w-4xl border-l border-[rgba(173,104,79,0.4)] pl-4 text-base leading-8 text-[var(--foreground)]/86">{item.summary}</p>
+            <h1 className="mt-5 text-3xl font-semibold tracking-[-0.05em] sm:text-4xl md:text-6xl">{item.name}</h1>
+            <p className="mt-3 measure text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">{item.tagline}</p>
+            <p className="mt-5 max-w-4xl border-l border-[rgba(173,104,79,0.4)] pl-3 text-sm leading-7 text-[var(--foreground)]/86 sm:pl-4 sm:text-base sm:leading-8">{item.summary}</p>
 
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="mt-6 grid gap-3 sm:gap-4 md:grid-cols-2">
               <InsightCard title="一句话结论" value={item.thesis} emphasis />
               <InsightCard title="深层原因" value={item.rootCause} />
               <InsightCard title="主要信号" value={item.signal} />
@@ -391,9 +391,9 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
                 <div className="text-sm text-[var(--muted)]">事实摘要</div>
                 <p className="mt-3 text-sm leading-8 text-[var(--foreground)]/88">{item.factSummary || item.summary}</p>
               </div>
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
                 {(item.factPoints.length ? item.factPoints : ["待补充事实要点"]).map((point) => (
-                  <div key={point} className="panel rounded-[24px] p-5 text-sm leading-7 text-[var(--muted)]">
+                  <div key={point} className="panel rounded-[20px] p-4 text-sm leading-7 text-[var(--muted)] sm:rounded-[24px] sm:p-5">
                     <span className="text-[var(--foreground)]">— </span>
                     {point}
                   </div>
@@ -408,9 +408,9 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
                 <div className="text-sm text-[var(--muted)]">分析摘要</div>
                 <p className="mt-3 text-sm leading-8 text-[var(--foreground)]/88">{item.analysisSummary || item.thesis}</p>
               </div>
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
                 {(item.analysisPoints.length ? item.analysisPoints : [item.rootCause || "待补充分析判断"]).map((point) => (
-                  <div key={point} className="panel rounded-[24px] p-5 text-sm leading-7 text-[var(--muted)]">
+                  <div key={point} className="panel rounded-[20px] p-4 text-sm leading-7 text-[var(--muted)] sm:rounded-[24px] sm:p-5">
                     <span className="text-[var(--foreground)]">— </span>
                     {point}
                   </div>
@@ -422,7 +422,7 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
           <Section title="时间线" eyebrow="timeline">
             <div className="space-y-4">
               {item.timeline.map((entry) => (
-                <div key={`${entry.date}-${entry.title}`} className="timeline-card rounded-[24px] p-5">
+                <div key={`${entry.date}-${entry.title}`} className="timeline-card rounded-[20px] p-4 sm:rounded-[24px] sm:p-5">
                   <div className="eyebrow text-[11px] text-[var(--accent-blue)]">{entry.date}</div>
                   <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em]">{entry.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{entry.note}</p>
@@ -432,9 +432,9 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
           </Section>
 
           <Section title="死前信号" eyebrow="warning signs">
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
               {item.warningSigns.map((signal) => (
-                <div key={signal} className="panel rounded-[24px] p-5 text-sm leading-7 text-[var(--muted)]">
+                <div key={signal} className="panel rounded-[20px] p-4 text-sm leading-7 text-[var(--muted)] sm:rounded-[24px] sm:p-5">
                   <span className="text-[var(--foreground)]">— </span>
                   {signal}
                 </div>
@@ -458,8 +458,8 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
           </Section>
         </section>
 
-        <aside className="space-y-6">
-          <div className="panel rounded-[28px] p-6">
+        <aside className="space-y-4 sm:space-y-6">
+          <div className="panel rounded-[24px] p-4 sm:rounded-[28px] sm:p-6">
             <div className="eyebrow text-xs text-[var(--accent-rust)]">case facts</div>
             <dl className="mt-6 space-y-4 text-sm">
               {[
@@ -478,7 +478,7 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
             </dl>
           </div>
 
-          <div className="panel rounded-[28px] p-6">
+          <div className="panel rounded-[24px] p-4 sm:rounded-[28px] sm:p-6">
             <div className="eyebrow text-xs text-[var(--accent-blue)]">failure tags</div>
             <div className="mt-5 flex flex-wrap gap-2">
               {item.tags.map((tag) => (
@@ -487,7 +487,7 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
             </div>
           </div>
 
-          <div className="panel rounded-[28px] p-6">
+          <div className="panel rounded-[24px] p-4 sm:rounded-[28px] sm:p-6">
             <div className="eyebrow text-xs text-[var(--accent-gold)]">reading frame</div>
             <div className="mt-4 space-y-3 text-sm leading-7 text-[var(--muted)]">
               <p>先看一句话结论，确认这个案例真正死在什么地方。</p>
@@ -496,7 +496,7 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
             </div>
           </div>
 
-          <div className="panel rounded-[28px] p-6">
+          <div className="panel rounded-[24px] p-4 sm:rounded-[28px] sm:p-6">
             <div className="eyebrow text-xs text-[var(--accent-gold)]">related cases</div>
             <div className="mt-5 space-y-3">
               {relatedCases.length ? (
@@ -519,7 +519,7 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
 
 function InsightCard({ title, value, emphasis = false }: { title: string; value: string; emphasis?: boolean }) {
   return (
-    <div className={cn("rounded-[24px] border border-[var(--line)] bg-[rgba(255,255,255,0.03)] p-5", emphasis && "ring-1 ring-[rgba(173,104,79,0.18)]")}>
+    <div className={cn("rounded-[20px] border border-[var(--line)] bg-[rgba(255,255,255,0.03)] p-4 sm:rounded-[24px] sm:p-5", emphasis && "ring-1 ring-[rgba(173,104,79,0.18)]")}>
       <div className="text-sm text-[var(--muted)]">{title}</div>
       <p className={cn("mt-3 text-sm leading-7 text-[var(--foreground)]/88", emphasis && "text-[var(--foreground)]")}>{value}</p>
     </div>
@@ -529,9 +529,9 @@ function InsightCard({ title, value, emphasis = false }: { title: string; value:
 function Section({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {
   return (
     <section>
-      <div className="mb-5">
+      <div className="mb-4 sm:mb-5">
         <div className="eyebrow text-xs text-[var(--accent-blue)]">{eyebrow}</div>
-        <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em]">{title}</h2>
+        <h2 className="mt-2 text-xl font-semibold tracking-[-0.04em] sm:text-2xl">{title}</h2>
       </div>
       {children}
     </section>
