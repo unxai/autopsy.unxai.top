@@ -373,9 +373,28 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
               <span className="text-sm text-[var(--muted)]">结局：{item.endedAt}</span>
             </div>
 
+            <div className="mt-5 grid gap-3 sm:hidden">
+              {[
+                ["产品状态", item.statusLabel],
+                ["赛道", item.category],
+                ["时间节点", item.endedAt],
+                ["时间线", `${item.timeline.length} 条`],
+              ].map(([label, value]) => (
+                <div key={label} className="flex items-center justify-between rounded-2xl border border-[var(--line)] bg-[rgba(255,255,255,0.03)] px-4 py-3">
+                  <span className="text-xs text-[var(--muted)]">{label}</span>
+                  <span className="text-sm text-[var(--foreground)]">{value}</span>
+                </div>
+              ))}
+            </div>
+
             <h1 className="mt-5 text-3xl font-semibold tracking-[-0.05em] sm:text-4xl md:text-6xl">{item.name}</h1>
             <p className="mt-3 measure text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">{item.tagline}</p>
             <p className="mt-5 max-w-4xl border-l border-[rgba(173,104,79,0.4)] pl-3 text-sm leading-7 text-[var(--foreground)]/86 sm:pl-4 sm:text-base sm:leading-8">{item.summary}</p>
+
+            <div className="mt-4 rounded-[20px] border border-[rgba(173,104,79,0.2)] bg-[rgba(173,104,79,0.06)] p-4 sm:hidden">
+              <div className="text-xs text-[var(--muted)]">一句话结论</div>
+              <p className="mt-2 text-sm leading-7 text-[var(--foreground)]">{item.thesis}</p>
+            </div>
 
             <div className="mt-6 grid gap-3 sm:gap-4 md:grid-cols-2">
               <InsightCard title="一句话结论" value={item.thesis} emphasis />
@@ -458,7 +477,7 @@ export function CaseDetailPage({ item, relatedCases = [] }: { item: CaseRecord |
           </Section>
         </section>
 
-        <aside className="space-y-4 sm:space-y-6">
+        <aside className="hidden space-y-4 sm:space-y-6 lg:block">
           <div className="panel rounded-[24px] p-4 sm:rounded-[28px] sm:p-6">
             <div className="eyebrow text-xs text-[var(--accent-rust)]">case facts</div>
             <dl className="mt-6 space-y-4 text-sm">
