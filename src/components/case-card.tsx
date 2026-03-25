@@ -30,9 +30,9 @@ export function CaseCard({ item }: { item: CaseRecord }) {
       </div>
 
       <div className="mt-5 grid gap-2 border-t border-[var(--line)] pt-4 text-xs text-[var(--muted)] sm:mt-6 sm:gap-3 sm:grid-cols-3">
-        <span>{item.endedAt}</span>
-        <span>{item.timeline.length} timeline</span>
-        <span>{item.sources.length} sources</span>
+        <span>结局：{item.endedAt}</span>
+        <span>{item.timeline.length} 条时间线</span>
+        <span>{item.sources.length} 个来源</span>
       </div>
     </Link>
   );

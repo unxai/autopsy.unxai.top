@@ -36,8 +36,8 @@ export function Header() {
           </div>
         </Link>
 
-        <div className="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-end sm:gap-4">
-          <nav className="flex items-center gap-3 text-sm text-[var(--muted)] md:gap-6">
+        <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-end sm:gap-4">
+          <nav className="flex items-center gap-2 text-sm text-[var(--muted)] md:gap-6">
             <Link href="/cases" className="transition hover:text-[var(--foreground)]">
               案例库
             </Link>
@@ -155,7 +155,7 @@ export function FeaturedSection({ cases }: { cases: CaseRecord[] }) {
 
   return (
     <section id="featured" className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-      <div className="mb-8 flex items-end justify-between gap-6">
+      <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
           <div className="eyebrow text-xs text-[var(--accent-blue)]">featured autopsies</div>
           <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">精选尸检</h2>
@@ -165,16 +165,16 @@ export function FeaturedSection({ cases }: { cases: CaseRecord[] }) {
         </Link>
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-5 lg:grid-cols-3">
         {featuredCases.map((item) => (
-          <Link key={item.id} href={`/cases/${item.id}`} className="panel group rounded-[28px] p-6 transition hover:-translate-y-1 hover:border-[rgba(173,104,79,0.28)] hover:bg-[rgba(24,31,43,0.96)]">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--line)] bg-[rgba(255,255,255,0.03)] font-mono text-sm text-[var(--accent-blue)]">{item.name.slice(0, 2).toUpperCase()}</div>
+          <Link key={item.id} href={`/cases/${item.id}`} className="panel group rounded-[24px] p-4 transition hover:-translate-y-1 hover:border-[rgba(173,104,79,0.28)] hover:bg-[rgba(24,31,43,0.96)] sm:rounded-[28px] sm:p-6">
+            <div className="flex items-start justify-between gap-3 sm:items-center sm:gap-4">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--line)] bg-[rgba(255,255,255,0.03)] font-mono text-sm text-[var(--accent-blue)] sm:h-12 sm:w-12">{item.name.slice(0, 2).toUpperCase()}</div>
               <StatusBadge status={item.statusLabel} />
             </div>
-            <div className="mt-6 space-y-4">
+            <div className="mt-5 space-y-4 sm:mt-6">
               <div>
-                <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">{item.name}</h3>
+                <h3 className="text-xl font-semibold tracking-[-0.04em] text-[var(--foreground)] sm:text-2xl">{item.name}</h3>
                 <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{item.tagline}</p>
               </div>
               <div className="flex flex-wrap gap-2">
