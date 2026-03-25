@@ -25,7 +25,7 @@ const statusNotes: Record<string, string> = {
 export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--line)] bg-[rgba(15,17,21,0.86)] backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:px-10">
         <Link href="/" className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-[rgba(173,104,79,0.35)] bg-[rgba(173,104,79,0.08)]">
             <Image src="/logo.png" alt="AI 产品尸检馆" width={44} height={44} className="h-11 w-11 object-cover" />
@@ -36,8 +36,8 @@ export function Header() {
           </div>
         </Link>
 
-        <div className="flex items-center gap-4">
-          <nav className="flex items-center gap-4 text-sm text-[var(--muted)] md:gap-6">
+        <div className="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-end sm:gap-4">
+          <nav className="flex items-center gap-3 text-sm text-[var(--muted)] md:gap-6">
             <Link href="/cases" className="transition hover:text-[var(--foreground)]">
               案例库
             </Link>
@@ -78,15 +78,15 @@ export function Hero({ cases }: { cases: CaseRecord[] }) {
 
   return (
     <section className="archive-grid border-b border-[var(--line)]">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-18 lg:grid-cols-[1.3fr_0.7fr] lg:px-10 lg:py-24">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 sm:py-18 lg:grid-cols-[1.3fr_0.7fr] lg:gap-10 lg:px-10 lg:py-24">
         <div className="space-y-8">
           <div className="eyebrow text-xs text-[var(--accent-blue)]">research archive / failed products / evidence first</div>
           <div className="space-y-5">
-            <h1 className="max-w-4xl text-5xl leading-[1.04] font-semibold tracking-[-0.04em] text-[var(--foreground)] md:text-7xl">
+            <h1 className="max-w-4xl text-4xl leading-[1.06] font-semibold tracking-[-0.04em] text-[var(--foreground)] sm:text-5xl md:text-7xl">
               记录 AI 产品如何
               <span className="text-[var(--accent-rust)]">失败、停更、转型与消失。</span>
             </h1>
-            <p className="measure text-lg leading-8 text-[var(--muted)] md:text-xl">一个面向 AI 创业者、产品人和研究者的结构化案例库。我们不消费失败，而是把热闹过后的结局整理成可检索、可比较、可复盘的研究样本。</p>
+            <p className="measure text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8 md:text-xl">一个面向 AI 创业者、产品人和研究者的结构化案例库。我们不消费失败，而是把热闹过后的结局整理成可检索、可比较、可复盘的研究样本。</p>
           </div>
 
           <div className="flex flex-wrap gap-4">
@@ -305,7 +305,7 @@ export function CasesListPage({ cases, children }: { cases: CaseRecord[]; childr
         </div>
       </div>
 
-      <div className="mb-6 grid gap-4 md:grid-cols-4">
+      <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <MetricCard label="当前案例" value={String(cases.length).padStart(2, "0")} note="首批研究样本" />
         <MetricCard label="涉及赛道" value={String(categoryValues.length).padStart(2, "0")} note="硬件、资讯、聊天、社交、写作" />
         <MetricCard label="状态类型" value={String(statusValues.length).padStart(2, "0")} note="关闭、停更、转型、名存实亡" />

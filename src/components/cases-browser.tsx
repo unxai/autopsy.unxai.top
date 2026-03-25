@@ -51,7 +51,7 @@ export function CasesBrowser({
 
   return (
     <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-      <aside className="panel h-fit rounded-[28px] p-6">
+      <aside className="panel h-fit rounded-[24px] p-4 sm:rounded-[28px] sm:p-6">
         <div className="eyebrow text-xs text-[var(--accent-rust)]">筛选</div>
         <div className="mt-6 space-y-6 text-sm">
           <FilterGroup title="状态" values={statusValues} active={status} onChange={setStatus} />
@@ -82,7 +82,7 @@ export function CasesBrowser({
         </div>
 
         {filtered.length ? (
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-2">
+          <div className="grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-2">
             {filtered.map((item) => (
               <CaseCard key={item.id} item={item} />
             ))}

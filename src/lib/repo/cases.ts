@@ -4,8 +4,39 @@ import { createClient } from "@/lib/supabase/server";
 
 export type CaseRecord = CaseSeed;
 
+function parseEndedAt(value: string) {
+  if (!value) return Number.NEGATIVE_INFINITY;
+
+  const normalized = value.trim();
+  const quarterMatch = normalized.match(/^(\d{4})\s*Q([1-4])$/i);
+  if (quarterMatch) {
+    const year = Number(quarterMatch[1]);
+    const quarter = Number(quarterMatch[2]);
+    return year * 100 + quarter;
+  }
+
+  const monthMatch = normalized.match(/^(\d{4})-(\d{1,2})$/);
+  if (monthMatch) {
+    const year = Number(monthMatch[1]);
+    const month = Number(monthMatch[2]);
+    return year * 100 + month;
+  }
+
+  const yearMatch = normalized.match(/^(\d{4})$/);
+  if (yearMatch) {
+    return Number(yearMatch[1]) * 100;
+  }
+
+  const timestamp = Date.parse(normalized);
+  return Number.isNaN(timestamp) ? Number.NEGATIVE_INFINITY : timestamp;
+}
+
 function sortCases(items: CaseRecord[]) {
-  return [...items].sort((a, b) => a.name.localeCompare(b.name));
+  return [...items].sort((a, b) => {
+    const diff = parseEndedAt(b.endedAt) - parseEndedAt(a.endedAt);
+    if (diff !== 0) return diff;
+    return b.id - a.id;
+  });
 }
 
 export const shouldUseSupabase = Boolean(
@@ -23,7 +54,8 @@ export const getAllCases = cache(async (): Promise<CaseRecord[]> => {
       .from("case_library")
       .select("*")
       .eq("visible", true)
-      .order("name", { ascending: true });
+      .order("ended_at", { ascending: false, nullsFirst: false })
+      .order("id", { ascending: false });
 
     if (error || !data?.length) {
       return sortCases(caseSeeds);
