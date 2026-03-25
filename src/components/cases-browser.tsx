@@ -26,6 +26,7 @@ export function CasesBrowser({
   const [status, setStatus] = useState<string>(initialStatus);
   const [category, setCategory] = useState<string>(initialCategory);
   const [tag, setTag] = useState<string>(initialTag);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const statusValues = ["全部", ...unique(cases.map((item) => item.statusLabel))];
   const categoryValues = ["全部", ...unique(cases.map((item) => item.category))];
@@ -40,6 +41,10 @@ export function CasesBrowser({
     router.replace(query ? `/cases?${query}` : "/cases", { scroll: false });
   }, [status, category, tag, router, searchParams]);
 
+  useEffect(() => {
+    setMobileFiltersOpen(false);
+  }, [status, category, tag]);
+
   const filtered = useMemo(() => {
     return cases.filter((item) => {
       if (status !== "全部" && item.statusLabel !== status) return false;
@@ -49,9 +54,45 @@ export function CasesBrowser({
     });
   }, [cases, status, category, tag]);
 
+  const activeFilterCount = [status, category, tag].filter((value) => value !== "全部").length;
+
+  function clearFilters() {
+    setStatus("全部");
+    setCategory("全部");
+    setTag("全部");
+  }
+
   return (
     <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
-      <aside className="panel h-fit rounded-[24px] p-4 sm:rounded-[28px] sm:p-6">
+      <div className="lg:hidden">
+        <button
+          type="button"
+          onClick={() => setMobileFiltersOpen((open) => !open)}
+          className="panel flex w-full items-center justify-between rounded-[20px] px-4 py-3 text-left"
+          aria-expanded={mobileFiltersOpen}
+          aria-controls="cases-mobile-filters"
+        >
+          <div>
+            <div className="text-sm text-[var(--foreground)]">筛选条件</div>
+            <div className="mt-1 text-xs text-[var(--muted)]">
+              {activeFilterCount ? `已启用 ${activeFilterCount} 项筛选` : "当前未启用筛选"}
+            </div>
+          </div>
+          <span className="text-sm text-[var(--muted)]">{mobileFiltersOpen ? "收起" : "展开"}</span>
+        </button>
+
+        {mobileFiltersOpen ? (
+          <div id="cases-mobile-filters" className="panel mt-3 rounded-[24px] p-4">
+            <div className="space-y-5 text-sm">
+              <FilterGroup title="状态" values={statusValues} active={status} onChange={setStatus} />
+              <FilterGroup title="赛道" values={categoryValues} active={category} onChange={setCategory} />
+              <FilterGroup title="死因标签" values={tagValues} active={tag} onChange={setTag} />
+            </div>
+          </div>
+        ) : null}
+      </div>
+
+      <aside className="panel hidden h-fit rounded-[24px] p-4 lg:block lg:rounded-[28px] lg:p-6">
         <div className="eyebrow text-xs text-[var(--accent-rust)]">筛选</div>
         <div className="mt-6 space-y-6 text-sm">
           <FilterGroup title="状态" values={statusValues} active={status} onChange={setStatus} />
@@ -70,11 +111,7 @@ export function CasesBrowser({
           </span>
           <button
             type="button"
-            onClick={() => {
-              setStatus("全部");
-              setCategory("全部");
-              setTag("全部");
-            }}
+            onClick={clearFilters}
             className="rounded-full border border-[var(--line)] px-4 py-2 transition hover:text-[var(--foreground)]"
           >
             清空筛选
