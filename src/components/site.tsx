@@ -78,9 +78,9 @@ export function Hero({ cases }: { cases: CaseRecord[] }) {
 
   return (
     <section className="archive-grid border-b border-[var(--line)]">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 sm:py-18 lg:grid-cols-[1.3fr_0.7fr] lg:gap-10 lg:px-10 lg:py-24">
-        <div className="space-y-8">
-          <div className="eyebrow text-xs text-[var(--accent-blue)]">research archive / failed products / evidence first</div>
+      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-12 sm:px-6 sm:py-18 lg:grid-cols-[1.3fr_0.7fr] lg:gap-10 lg:px-10 lg:py-24">
+        <div className="space-y-6 sm:space-y-8">
+          <div className="eyebrow text-[11px] text-[var(--accent-blue)] sm:text-xs">research archive / failed products / evidence first</div>
           <div className="space-y-5">
             <h1 className="max-w-4xl text-4xl leading-[1.06] font-semibold tracking-[-0.04em] text-[var(--foreground)] sm:text-5xl md:text-7xl">
               记录 AI 产品如何
@@ -89,26 +89,26 @@ export function Hero({ cases }: { cases: CaseRecord[] }) {
             <p className="measure text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8 md:text-xl">一个面向 AI 创业者、产品人和研究者的结构化案例库。我们不消费失败，而是把热闹过后的结局整理成可检索、可比较、可复盘的研究样本。</p>
           </div>
 
-          <div className="flex flex-wrap gap-4">
-            <Link href="/cases" className="rounded-full border border-[rgba(173,104,79,0.4)] bg-[rgba(173,104,79,0.12)] px-6 py-3 text-sm text-[var(--foreground)] transition hover:bg-[rgba(173,104,79,0.18)]">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Link href="/cases" className="rounded-full border border-[rgba(173,104,79,0.4)] bg-[rgba(173,104,79,0.12)] px-5 py-3 text-center text-sm text-[var(--foreground)] transition hover:bg-[rgba(173,104,79,0.18)] sm:px-6">
               浏览案例
             </Link>
-            <a href="#featured" className="rounded-full border border-[var(--line)] px-6 py-3 text-sm text-[var(--muted)] transition hover:text-[var(--foreground)]">
+            <a href="#featured" className="rounded-full border border-[var(--line)] px-5 py-3 text-center text-sm text-[var(--muted)] transition hover:text-[var(--foreground)] sm:px-6">
               看精选尸检
             </a>
           </div>
         </div>
 
-        <aside className="panel-strong shadow-soft rounded-[28px] p-6">
+        <aside className="panel-strong shadow-soft rounded-[24px] p-4 sm:rounded-[28px] sm:p-6">
           <div className="eyebrow text-xs text-[var(--accent-gold)]">current archive snapshot</div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+          <div className="mt-6 grid gap-3 sm:mt-8 sm:gap-4 sm:grid-cols-3 lg:grid-cols-1">
             {[
               ["归档案例", String(totalCases).padStart(2, "0")],
               ["涉及赛道", String(totalCategories).padStart(2, "0")],
               ["死因标签", String(totalTags).padStart(2, "0")],
             ].map(([label, value]) => (
-              <div key={label} className="rounded-2xl border border-[var(--line)] bg-[rgba(255,255,255,0.02)] p-4">
-                <div className="text-3xl font-semibold tracking-[-0.04em]">{value}</div>
+              <div key={label} className="rounded-2xl border border-[var(--line)] bg-[rgba(255,255,255,0.02)] p-3 sm:p-4">
+                <div className="text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">{value}</div>
                 <div className="mt-2 text-sm text-[var(--muted)]">{label}</div>
               </div>
             ))}
@@ -131,15 +131,15 @@ export function MethodSection() {
 
   return (
     <section className="border-b border-[var(--line)] bg-[rgba(255,255,255,0.02)]">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-10">
         <div className="mb-8 max-w-3xl">
-          <div className="eyebrow text-xs text-[var(--accent-blue)]">how to read</div>
-          <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">这不是资讯流，而是一套研究阅读框架。</h2>
+          <div className="eyebrow text-[11px] text-[var(--accent-blue)] sm:text-xs">how to read</div>
+          <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">这不是资讯流，而是一套研究阅读框架。</h2>
           <p className="mt-4 text-base leading-8 text-[var(--muted)]">这个项目的目标不是追热度，而是把失败产品变成可复盘、可比较、可积累的反面样本。</p>
         </div>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
           {principles.map(([title, note]) => (
-            <div key={title} className="panel rounded-[24px] p-6">
+            <div key={title} className="panel rounded-[20px] p-4 sm:rounded-[24px] sm:p-6">
               <div className="text-xl font-semibold tracking-[-0.03em]">{title}</div>
               <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{note}</p>
             </div>

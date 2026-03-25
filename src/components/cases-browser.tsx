@@ -103,12 +103,15 @@ export function CasesBrowser({
 
       <section className="space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-[var(--muted)]">
-          <span>
-            当前结果：{filtered.length} 个案例
-            {tag !== "全部" ? ` · 标签：${tag}` : ""}
-            {status !== "全部" ? ` · 状态：${status}` : ""}
-            {category !== "全部" ? ` · 赛道：${category}` : ""}
-          </span>
+          <div className="space-y-1">
+            <div>
+              当前结果：{filtered.length} 个案例
+              {tag !== "全部" ? ` · 标签：${tag}` : ""}
+              {status !== "全部" ? ` · 状态：${status}` : ""}
+              {category !== "全部" ? ` · 赛道：${category}` : ""}
+            </div>
+            <div className="text-xs text-[rgba(153,163,179,0.72)]">默认按结束时间倒序，最新结局优先展示</div>
+          </div>
           <button
             type="button"
             onClick={clearFilters}
